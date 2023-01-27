@@ -10,7 +10,7 @@ A basic `C` sandbox to test your code
 
 ## Useful links
 
-https://google.github.io/googletest/
+https://google.github.io/googletest/primer.html
 
 ## License
 ```
