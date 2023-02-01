@@ -24,7 +24,7 @@ CPPFLAGS := -Wall -Wextra -pedantic -std=c++17
 
 GTESTFLAGS = --gtest_color=yes --gtest_print_time=0
 
-.PHONY: testexec
+.PHONY: test
 test: $(BUILD_DIR)/$(EXEC)
 	@echo
 	@python -c 'print("-" * 80)'
@@ -32,9 +32,6 @@ test: $(BUILD_DIR)/$(EXEC)
 	@python -c 'print("-" * 80)'
 	@echo
 	@./$< $(GTESTFLAGS)
-
-.PHONY: testexec
-testexec: $(BUILD_DIR)/$(EXEC)
 
 # Linking
 $(BUILD_DIR)/$(EXEC): $(OBJS)
