@@ -2,6 +2,7 @@ EXEC = tests.out
 
 BUILD_DIR = ./build
 SRC_DIR = ./src
+INC_DIR = ./include
 
 SRCS := $(shell find $(SRC_DIR) -name '*.c' -or -name '*.cpp')
 SRCS_H = $(SRCS) $(shell find $(SRC_DIR) -name '*.h')
@@ -19,17 +20,19 @@ CFLAGS += -Wextra
 CFLAGS += -pedantic
 CFLAGS += -Werror
 CFLAGS += -Wmissing-declarations
+CFLAGS += -I$(INC_DIR)
 
-CPPFLAGS := -Wall -Wextra -pedantic -std=c++17
+CXXFLAGS := -Wall -Wextra -pedantic -std=c++17
+CXXFLAGS += -I$(INC_DIR)
 
 GTESTFLAGS = --gtest_color=yes --gtest_print_time=0
 
 .PHONY: test
 test: $(BUILD_DIR)/$(EXEC)
 	@echo
-	@python -c 'print("-" * 80)'
+	@python3 -c 'print("-" * 80)'
 	@echo TEST OUTPUT
-	@python -c 'print("-" * 80)'
+	@python3 -c 'print("-" * 80)'
 	@echo
 	@./$< $(GTESTFLAGS)
 
@@ -45,7 +48,7 @@ $(BUILD_DIR)/%.c.o: %.c
 # Compile CPP
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	mkdir -p $(dir $@)
-	$(CXX) $(CPPFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
