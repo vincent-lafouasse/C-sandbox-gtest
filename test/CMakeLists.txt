@@ -13,7 +13,10 @@ set_target_properties(mylib PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/../include"
 )
 
-add_executable(test_runner src/test.cpp)
+add_executable(test_runner
+	src/test.cpp
+	src/main.cpp
+)
 target_link_libraries(test_runner
     mylib
     libgtest
