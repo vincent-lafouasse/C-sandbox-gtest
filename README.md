@@ -1,6 +1,6 @@
 # A title
 
-![test status](https://github.com/vincent-lafouasse/t_vector/actions/workflows/run_tests.yml/badge.svg)
+![test status](https://github.com/vincent-lafouasse/C-sandbox-gtest/actions/workflows/run_tests.yml/badge.svg)
 
 ## What is this?
 
