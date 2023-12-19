@@ -3,8 +3,9 @@ cmake_minimum_required(VERSION 3.10)
 project(gtest_sandbox)
 set(CMAKE_CXX_STANDARD 17)
 
-#install gtest
-include(${CMAKE_SOURCE_DIR}/install_gtest.cmake)
+# fetch gtest
+# targets: `libgtest` `libgmock`
+include(${CMAKE_SOURCE_DIR}/fetch_gtest.cmake)
 
 #import library
 add_library(mylib STATIC IMPORTED)

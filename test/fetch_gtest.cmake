@@ -1,3 +1,8 @@
+# Fetch gtest through git
+#
+# Targets : `libgtest` `libgmock`
+
+
 find_package(Threads REQUIRED)
 
 include(ExternalProject)
