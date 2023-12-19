@@ -25,6 +25,13 @@ $(BUILD_DIR)/%.c.o: %.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+.PHONY: test
+test: clean $(LIB)
+	cmake -B build -S test
+	cmake --build build
+	./build/test_runner
+
+
 .PHONY: clean
 clean:
 	$(RM) -r $(BUILD_DIR)
