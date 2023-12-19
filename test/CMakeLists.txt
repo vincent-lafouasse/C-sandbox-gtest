@@ -4,7 +4,7 @@ project(gtest_sandbox)
 set(CMAKE_CXX_STANDARD 17)
 
 # fetch gtest
-# targets: `libgtest` `libgmock`
+# targets: `libgtest` `libgmock` (static libraries)
 include(${CMAKE_SOURCE_DIR}/fetch_gtest.cmake)
 
 #import library
