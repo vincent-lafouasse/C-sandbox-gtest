@@ -26,7 +26,7 @@ $(BUILD_DIR)/%.c.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: test
-test: clean $(LIB)
+test: $(LIB)
 	cmake -B build -S test
 	cmake --build build
 	./build/test_runner
