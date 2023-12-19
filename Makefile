@@ -1,16 +1,12 @@
-EXEC = tests.out
+LIB = libmylib.a
 
 BUILD_DIR = ./build
 SRC_DIR = ./src
 INC_DIR = ./include
 
-SRCS := $(shell find $(SRC_DIR) -name '*.c' -or -name '*.cpp')
+SRCS := $(shell find $(SRC_DIR) -name '*.c')
 SRCS_H = $(SRCS) $(shell find $(SRC_DIR) -name '*.h')
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
-
-### Extra libs go here vvv (e.g. math.h)
-LIBS = -lm
-LDFLAGS := -lgtest -lgtest_main -lpthread -L/usr/lib -L/usr/local/lib
 
 ###
 CFLAGS  = -std=c99
@@ -22,38 +18,13 @@ CFLAGS += -Werror
 CFLAGS += -Wmissing-declarations
 CFLAGS += -I$(INC_DIR)
 
-CXXFLAGS := -Wall -Wextra -pedantic -std=c++17
-CXXFLAGS += -I$(INC_DIR)
+$(LIB): $(OBJS)
+	ar rcs $(LIB) $(OBJS)
 
-GTESTFLAGS = --gtest_color=yes --gtest_print_time=0
-
-.PHONY: test
-test: $(BUILD_DIR)/$(EXEC)
-	@echo
-	@python3 -c 'print("-" * 80)'
-	@echo TEST OUTPUT
-	@python3 -c 'print("-" * 80)'
-	@echo
-	@./$< $(GTESTFLAGS)
-
-# Linking
-$(BUILD_DIR)/$(EXEC): $(OBJS)
-	$(CXX) $^ -o $@ $(LDFLAGS) $(LIBS)
-
-# Compile C 
 $(BUILD_DIR)/%.c.o: %.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Compile CPP
-$(BUILD_DIR)/%.cpp.o: %.cpp
-	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
 .PHONY: clean
 clean:
 	$(RM) -r $(BUILD_DIR)
-
-.PHONY: format
-format:
-	clang-format -i $(SRCS_H)
