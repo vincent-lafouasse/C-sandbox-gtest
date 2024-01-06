@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(gtest_sandbox)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE) # LSP stuff, don't worry about it
 
 # fetch gtest
 # targets: `libgtest` `libgmock` (static libraries)
