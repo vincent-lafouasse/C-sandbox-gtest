@@ -28,3 +28,7 @@ vtest: test
 .PHONY: clean
 clean:
 	$(RM) -r build
+
+.PHONY: t vt
+t: test
+vt: vtest
