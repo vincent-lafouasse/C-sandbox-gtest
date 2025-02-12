@@ -16,10 +16,14 @@ build/%.c.o: %.c
 
 .PHONY: test
 test:
-	cmake -B build -S test
-	cmake --build build
-	./build/test_runner
+	mkdir -p build/test
+	cmake -B build/test -S test
+	cmake --build build/test
+	GTEST_COLOR=1 ctest --test-dir build/test $(CTEST_OPT)
 
+.PHONY: vtest
+vtest: CTEST_OPT += -V
+vtest: test
 
 .PHONY: clean
 clean:
