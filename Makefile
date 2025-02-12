@@ -15,7 +15,7 @@ build/%.c.o: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 .PHONY: test
-test: $(LIB)
+test:
 	cmake -B build -S test
 	cmake --build build
 	./build/test_runner
