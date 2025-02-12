@@ -1,29 +1,18 @@
-LIB = libmylib.a
+NAME = exec
 
-BUILD_DIR = ./build
-SRC_DIR = ./src
-INC_DIR = ./include
-
-SRCS := $(shell find $(SRC_DIR) -name '*.c')
-SRCS_H = $(SRCS) $(shell find $(SRC_DIR) -name '*.h')
-OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+SRCS := $(shell find src -name '*.c')
+OBJS := $(SRCS:%=build/%.o)
 
 ###
-CFLAGS  = -std=c99
-CFLAGS += -g
-CFLAGS += -Wall
-CFLAGS += -Wextra
-CFLAGS += -pedantic
-CFLAGS += -Werror
-CFLAGS += -Wmissing-declarations
-CFLAGS += -I$(INC_DIR)
+CFLAGS = -Wall -Wextra -Werror -g3
+CPPFLAGS = -I src
 
-$(LIB): $(OBJS)
-	ar rcs $(LIB) $(OBJS)
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) -o $(NAME)
 
-$(BUILD_DIR)/%.c.o: %.c
+build/%.c.o: %.c
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 .PHONY: test
 test: $(LIB)
@@ -34,4 +23,4 @@ test: $(LIB)
 
 .PHONY: clean
 clean:
-	$(RM) -r $(BUILD_DIR)
+	$(RM) -r build
