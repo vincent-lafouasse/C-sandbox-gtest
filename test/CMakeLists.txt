@@ -14,3 +14,9 @@ set(tested_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/../src/)
 set(tested_include_dir ${tested_src_dir}/)
 
 add_subdirectory(Integers)
+
+include(CTest)
+enable_testing()
+
+add_test(NAME IntegersTest
+		 COMMAND IntegersTest)
