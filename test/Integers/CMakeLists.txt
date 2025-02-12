@@ -6,6 +6,7 @@ set(integers_module
 
 target_sources(IntegersTest PRIVATE
 	${CMAKE_CURRENT_LIST_DIR}/main.cpp
+	${CMAKE_CURRENT_LIST_DIR}/addition.cpp
 
 	${integers_module}
 )
