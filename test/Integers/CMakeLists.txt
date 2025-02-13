@@ -1,7 +1,7 @@
 add_executable(IntegersTest)
 
 set(integers_module
-	${tested_src_dir}/Integers/add.c
+	${tested_src_dir}/integers/add.c
 )
 
 target_sources(IntegersTest PRIVATE
